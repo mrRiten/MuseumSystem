@@ -19,8 +19,12 @@ builder.Services.AddDbContext<MuseumSystemDbContext>(options =>
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IMuseumRepository, MuseumRepository>();
 builder.Services.AddScoped<IRecordRepository, RecordRepository>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IRecordClientRepository, RecordClientRepository>();
 builder.Services.AddScoped<IMuseumService, MuseumService>();
 builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<IRecordService, RecordService>();
+builder.Services.AddScoped<IClientService, ClientService>();
 
 var app = builder.Build();
 

@@ -1,13 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MuseumSystem.Application.ServiceContracts;
+using MuseumSystem.Core.Models;
 using MuseumSystem.Core.ModelsDTO;
 
 namespace MuseumSystem.Web.Controllers
 {
-    public class PostersController(IEventService eventService, IMuseumService museumService) : Controller
+    public class PostersController(IEventService eventService, IMuseumService museumService,
+        IClientService clientService, IRecordService recordService) : Controller
     {
         private readonly IEventService _eventService = eventService;
         private readonly IMuseumService _museumService = museumService;
+        private readonly IClientService _clientService = clientService;
+        private readonly IRecordService _recordService = recordService;
 
         [HttpGet("posters")]
         public async Task<IActionResult> AllPosters(string slugMuseum)
@@ -39,12 +43,26 @@ namespace MuseumSystem.Web.Controllers
             return View(posterDTO);
         }
 
-
         [HttpPost]
-        public async Task<IActionResult> Poster(PosterDTO posterDTO)
+        public async Task<IActionResult> Poster(PosterDTO posterDTO, string slugEvent)
         {
-            
+            if (ModelState.IsValid)
+            {
+                _clientService.CreateClientAsync(posterDTO.UploadRecord);
+                var client = await _clientService.GetLastClient();
 
+                var clientRecord = new RecordClient
+                {
+                    RecordId = posterDTO.UploadRecord.RecordId,
+                    ClientId = client.IdClient,
+                    Price = posterDTO.UploadRecord.Price,
+                };
+
+                await _recordService.CreateRecordClient(clientRecord);
+
+                return Redirect($"posters/{slugEvent}");
+            }
+            
             return View(posterDTO);
         }
 

@@ -36,7 +36,7 @@
             <div class="record__time-wrapper">
                 @foreach(var item in Model.CurrentEvent.Records)
                 {
-                    <button class="record__time-btn">@item.dateTime</button>
+                    <button value="@item.IdRecord" class="record__time-btn">@item.dateTime</button>
                 }
             </div>
         </li>
@@ -46,7 +46,7 @@
             <div class="record__time-wrapper">
                 @foreach (var item in Model.CurrentEvent.Records)
                 {
-                    <button class="record__time-btn">@item.dateTime</button>
+                    <button value="@item.IdRecord" class="record__time-btn">@item.dateTime</button>
                 }
             </div>
         </li>
@@ -72,6 +72,7 @@
             <form class="modal__form form" action="">
                 <h5 class="form__title">Информация о посетителе</h5>
                 <div class="form__wrapper">
+                    <input asp-for="@Model.UploadRecord.RecordId" hidden="hidden"/>
                     <input required class="form__lastname" placeholder="Фамилия" name="lastname" type="text">
                     <input required class="form__name" placeholder="Имя" name="name" type="text">
                     <input required class="form__middlename" placeholder="Отчество" name="middlename" type="text">

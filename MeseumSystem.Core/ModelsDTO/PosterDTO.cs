@@ -1,4 +1,5 @@
 ﻿using MuseumSystem.Core.Models;
+using MuseumSystem.Core.UploadModels;
 
 namespace MuseumSystem.Core.ModelsDTO
 {
@@ -6,5 +7,6 @@ namespace MuseumSystem.Core.ModelsDTO
     {
         public Museum Museum { get; set; }
         public Event CurrentEvent { get; set; }
+        public UploadRecord? UploadRecord { get; set; }
     }
 }
