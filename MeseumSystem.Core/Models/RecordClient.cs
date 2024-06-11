@@ -13,7 +13,7 @@ namespace MuseumSystem.Core.Models
         public int ClientId { get; set; }
 
         [Column(TypeName = "decimal(8, 2)")]
-        public decimal Price { get; set; }
+        public decimal RecordPrice { get; set; }
 
         public Record Record { get; set; }
 

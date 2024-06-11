@@ -3,7 +3,7 @@ var modal_date = document.getElementById("modal_date");
 var modal_time = document.getElementById("modal_time");
 var close_btn = document.getElementById("closebtn");
 var record_item = document.getElementsByClassName("record__item");
-
+var record_id = document.getElementById("recordid")
 
 for (let i = 0; i < record_item.length; i++) {
     const time_btn_collection = record_item[i].children[1].children
@@ -16,6 +16,7 @@ for (let i = 0; i < record_item.length; i++) {
 
             const target_date = record_item[i].children[0];
             modal_date.innerHTML = target_date.innerHTML;
+            record_id.value = target_date.value;
         }
     }
 }

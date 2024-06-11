@@ -72,7 +72,7 @@
             <form class="modal__form form" action="">
                 <h5 class="form__title">Информация о посетителе</h5>
                 <div class="form__wrapper">
-                    <input asp-for="@Model.UploadRecord.RecordId" hidden="hidden"/>
+                    <input id="recordid" asp-for="@Model.UploadRecord.RecordId" hidden="hidden" />
                     <input required class="form__lastname" placeholder="Фамилия" name="lastname" type="text">
                     <input required class="form__name" placeholder="Имя" name="name" type="text">
                     <input required class="form__middlename" placeholder="Отчество" name="middlename" type="text">

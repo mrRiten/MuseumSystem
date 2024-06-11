@@ -55,7 +55,7 @@ namespace MuseumSystem.Web.Controllers
                 {
                     RecordId = posterDTO.UploadRecord.RecordId,
                     ClientId = client.IdClient,
-                    Price = posterDTO.UploadRecord.Price,
+                    RecordPrice = posterDTO.UploadRecord.Price,
                 };
 
                 await _recordService.CreateRecordClient(clientRecord);

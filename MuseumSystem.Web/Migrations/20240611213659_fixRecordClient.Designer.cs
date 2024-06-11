@@ -12,8 +12,8 @@ using MuseumSystem.Core;
 namespace MuseumSystem.Web.Migrations
 {
     [DbContext(typeof(MuseumSystemDbContext))]
-    [Migration("20240611212146_da")]
-    partial class da
+    [Migration("20240611213659_fixRecordClient")]
+    partial class fixRecordClient
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -216,11 +216,11 @@ namespace MuseumSystem.Web.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("RecordId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("RecordPrice")
+                        .HasColumnType("decimal(8, 2)");
 
                     b.HasKey("IdRecordClient");
 

@@ -213,11 +213,11 @@ namespace MuseumSystem.Web.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(8, 2)");
-
                     b.Property<int>("RecordId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("RecordPrice")
+                        .HasColumnType("decimal(8, 2)");
 
                     b.HasKey("IdRecordClient");
 

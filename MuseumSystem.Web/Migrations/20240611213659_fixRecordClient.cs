@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MuseumSystem.Web.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class fixRecordClient : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,7 @@ namespace MuseumSystem.Web.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -38,25 +38,12 @@ namespace MuseumSystem.Web.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    DateDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SlugMuseum = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Museums", x => x.IdMuseum);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SocialStatuses",
-                columns: table => new
-                {
-                    IdSocialStatus = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NameSocialStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(8,2)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SocialStatuses", x => x.IdSocialStatus);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,7 +76,11 @@ namespace MuseumSystem.Web.Migrations
                     NameEvent = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DescriptionEvent = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AgeRating = table.Column<int>(type: "int", nullable: false),
-                    MuseumId = table.Column<int>(type: "int", nullable: false)
+                    MuseumId = table.Column<int>(type: "int", nullable: false),
+                    SlugEvent = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PreferentialPrice = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
+                    RetirementPrice = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
+                    FullPrice = table.Column<decimal>(type: "decimal(8,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -99,26 +90,6 @@ namespace MuseumSystem.Web.Migrations
                         column: x => x.MuseumId,
                         principalTable: "Museums",
                         principalColumn: "IdMuseum",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DateEvents",
-                columns: table => new
-                {
-                    IdDateEvent = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EventId = table.Column<int>(type: "int", nullable: false),
-                    EventDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DateEvents", x => x.IdDateEvent);
-                    table.ForeignKey(
-                        name: "FK_DateEvents_Events_EventId",
-                        column: x => x.EventId,
-                        principalTable: "Events",
-                        principalColumn: "IdEvent",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -148,8 +119,8 @@ namespace MuseumSystem.Web.Migrations
                 {
                     IdRecord = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SocialStatusId = table.Column<int>(type: "int", nullable: false),
-                    EventId = table.Column<int>(type: "int", nullable: false)
+                    EventId = table.Column<int>(type: "int", nullable: false),
+                    dateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -160,12 +131,6 @@ namespace MuseumSystem.Web.Migrations
                         principalTable: "Events",
                         principalColumn: "IdEvent",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Records_SocialStatuses_SocialStatusId",
-                        column: x => x.SocialStatusId,
-                        principalTable: "SocialStatuses",
-                        principalColumn: "IdSocialStatus",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -175,7 +140,8 @@ namespace MuseumSystem.Web.Migrations
                     IdRecordClient = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RecordId = table.Column<int>(type: "int", nullable: false),
-                    ClientId = table.Column<int>(type: "int", nullable: false)
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    RecordPrice = table.Column<decimal>(type: "decimal(8,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -198,11 +164,6 @@ namespace MuseumSystem.Web.Migrations
                 name: "IX_Admins_MuseumId",
                 table: "Admins",
                 column: "MuseumId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DateEvents_EventId",
-                table: "DateEvents",
-                column: "EventId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_MuseumId",
@@ -228,11 +189,6 @@ namespace MuseumSystem.Web.Migrations
                 name: "IX_Records_EventId",
                 table: "Records",
                 column: "EventId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Records_SocialStatusId",
-                table: "Records",
-                column: "SocialStatusId");
         }
 
         /// <inheritdoc />
@@ -240,9 +196,6 @@ namespace MuseumSystem.Web.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Admins");
-
-            migrationBuilder.DropTable(
-                name: "DateEvents");
 
             migrationBuilder.DropTable(
                 name: "ImageEvents");
@@ -258,9 +211,6 @@ namespace MuseumSystem.Web.Migrations
 
             migrationBuilder.DropTable(
                 name: "Events");
-
-            migrationBuilder.DropTable(
-                name: "SocialStatuses");
 
             migrationBuilder.DropTable(
                 name: "Museums");
