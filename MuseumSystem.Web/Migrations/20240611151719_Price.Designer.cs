@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MuseumSystem.Core;
 
@@ -11,9 +12,11 @@ using MuseumSystem.Core;
 namespace MuseumSystem.Web.Migrations
 {
     [DbContext(typeof(MuseumSystemDbContext))]
-    partial class MuseumSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240611151719_Price")]
+    partial class Price
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,6 +82,27 @@ namespace MuseumSystem.Web.Migrations
                     b.HasKey("IdClient");
 
                     b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("MuseumSystem.Core.Models.DateEvent", b =>
+                {
+                    b.Property<int>("IdDateEvent")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDateEvent"));
+
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdDateEvent");
+
+                    b.HasIndex("EventId");
+
+                    b.ToTable("DateEvents");
                 });
 
             modelBuilder.Entity("MuseumSystem.Core.Models.Event", b =>
@@ -193,8 +217,8 @@ namespace MuseumSystem.Web.Migrations
                     b.Property<int>("EventId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("dateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("SocialStatusId")
+                        .HasColumnType("int");
 
                     b.HasKey("IdRecord");
 
@@ -235,6 +259,17 @@ namespace MuseumSystem.Web.Migrations
                         .IsRequired();
 
                     b.Navigation("Museum");
+                });
+
+            modelBuilder.Entity("MuseumSystem.Core.Models.DateEvent", b =>
+                {
+                    b.HasOne("MuseumSystem.Core.Models.Event", "Event")
+                        .WithMany("DateEvents")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
                 });
 
             modelBuilder.Entity("MuseumSystem.Core.Models.Event", b =>
@@ -291,6 +326,8 @@ namespace MuseumSystem.Web.Migrations
 
             modelBuilder.Entity("MuseumSystem.Core.Models.Event", b =>
                 {
+                    b.Navigation("DateEvents");
+
                     b.Navigation("ImageEvents");
 
                     b.Navigation("Record");

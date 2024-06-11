@@ -9,13 +9,11 @@ namespace MuseumSystem.Core
 
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Client> Clients { get; set; }
-        public DbSet<DateEvent> DateEvents { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<ImageEvent> ImageEvents { get; set; }
         public DbSet<Museum> Museums { get; set; }
         public DbSet<Record> Records { get; set; }
         public DbSet<RecordClient> RecordClients { get; set; }
-        public DbSet<SocialStatus> SocialStatuses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,11 +21,6 @@ namespace MuseumSystem.Core
                 .HasOne(a => a.Museum)
                 .WithMany(m => m.Admins)
                 .HasForeignKey(a => a.MuseumId);
-
-            modelBuilder.Entity<DateEvent>()
-                .HasOne(de => de.Event)
-                .WithMany(e => e.DateEvents)
-                .HasForeignKey(de => de.EventId);
 
             modelBuilder.Entity<Event>()
                 .HasOne(e => e.Museum)
@@ -38,11 +31,6 @@ namespace MuseumSystem.Core
                 .HasOne(ie => ie.Event)
                 .WithMany(e => e.ImageEvents)
                 .HasForeignKey(ie => ie.EventId);
-
-            modelBuilder.Entity<Record>()
-                .HasOne(r => r.SocialStatus)
-                .WithMany()
-                .HasForeignKey(r => r.SocialStatusId);
 
             modelBuilder.Entity<Record>()
                 .HasOne(r => r.Event)
