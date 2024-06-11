@@ -1,0 +1,109 @@
+﻿@{
+}
+
+@model MuseumSystem.Core.ModelsDTO.PosterDTO;
+
+<link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+
+<h1 class="main__title">Музейный абонемент "Исторический багаж юного череповчанина"</h1>
+
+<a class="poster__museum" href="#">
+    <svg class="poster-museum__icon" width="14" height="21" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.28125 9.42411C9.95089 8.75446 10.2857 7.94643 10.2857 7C10.2857 6.05357 9.95089 5.24553 9.28125 4.57589C8.61161 3.90625 7.80357 3.57143 6.85714 3.57143C5.91071 3.57143 5.10268 3.90625 4.43304 4.57589C3.76339 5.24553 3.42857 6.05357 3.42857 7C3.42857 7.94643 3.76339 8.75446 4.43304 9.42411C5.10268 10.0937 5.91071 10.4286 6.85714 10.4286C7.80357 10.4286 8.61161 10.0937 9.28125 9.42411ZM13.7143 7C13.7143 7.97321 13.567 8.77232 13.2723 9.39732L8.39732 19.7634C8.25446 20.058 8.04018 20.2902 7.75446 20.4598C7.47768 20.6295 7.17857 20.7143 6.85714 20.7143C6.53571 20.7143 6.23214 20.6295 5.94643 20.4598C5.66964 20.2902 5.46429 20.058 5.33036 19.7634L0.441964 9.39732C0.147321 8.77232 0 7.97321 0 7C0 5.10714 0.669643 3.49107 2.00893 2.15178C3.34821 0.812499 4.96429 0.142856 6.85714 0.142856C8.75 0.142856 10.3661 0.812499 11.7054 2.15178C13.0446 3.49107 13.7143 5.10714 13.7143 7Z"
+              fill="white"></path>
+    </svg>
+    <span class="poster__text">ИСТОРИКО-КРАЕВЕДЧЕСКИЙ МУЗЕЙ</span>
+</a>
+
+<section class="exhibition-detail">
+    <div class="exhibition-detail__info">
+        <h2 class="exhibition-detail__title">Описание</h2>
+        <div class="exhibition-detail__text">
+            <p>
+                Историко-краеведческий музей представляет новую программу-абонемент для дошкольников "Исторический багаж
+                юного череповчанина". Эта программа разработана с целью пробуждать патриотические чувства уже с самых ранних
+                лет через любовь к истории своей малой родины.
+            </p>
+            <p>
+                В абонемент входят шесть музейных занятий по 30 минут, каждое из которых имеет форму исторической сказки и
+                проходит в залах постоянной экспозиции. Подача материала идёт дозированно, постепенно, отличается краткостью
+                и простотой в соответствии с возрастными особенностями аудитории. Для облегчения детского восприятия
+                экскурсовод выступает в роли разных исторических персонажей, характерных для своего времени. В конце каждого
+                занятия предусмотрен блок для закрепления новых знаний в интерактивной форме. У детей есть возможность не
+                только подержать в руках, но и научиться правильно использовать непривычные для них предметы из прошлого.
+            </p>
+            <p>
+                По предварительной записи.&nbsp;
+            </p>
+            <p>
+                Телефон:49-33-23
+            </p>
+        </div>
+    </div>
+    <div class="exhibition-detail__wrapper-images">
+        <img class="exhibition-detail__img" src="~/img/examle.jpeg" alt="">
+    </div>
+</section>
+
+<section class="record">
+    <h3 class="record__title">Записаться онлайн</h3>
+    <ul class="record__list">
+        <li class="record__item">
+            <time class="record__item-date" datetime="">25 июня</time>
+            <div class="record__time-wrapper">
+                <button class="record__time-btn">11:00</button>
+                <button class="record__time-btn">12:00</button>
+                <button class="record__time-btn">13:00</button>
+            </div>
+        </li>
+
+        <li class="record__item">
+            <time class="record__item-date" datetime="">24 июня</time>
+            <div class="record__time-wrapper">
+                <button class="record__time-btn">11:00</button>
+                <button class="record__time-btn">12:00</button>
+                <button class="record__time-btn">13:00</button>
+            </div>
+        </li>
+    </ul>
+</section>
+
+
+<div id="modal" class="modal">
+    <div class="modal__wrapper">
+        <button id="closebtn" class="modal__close">
+            <img src="~/img/close.png" alt="закрыть">
+        </button>
+        <div class="modal__content">
+            <h3 class="modal__title">Запись на мероприятие</h3>
+            <h4 class="modal__name-event">Название мероприятия</h4>
+            <div class="modal__datetime-wrapper">
+                <h4 class="modal__datetime-title">Мероприятие начнется</h4>
+                <time class="modal__datetime" datetime="">
+                    <span id="modal_date"></span>
+                    <span id="modal_time"></span>
+                </time>
+            </div>
+            <form class="modal__form form" action="">
+                <h5 class="form__title">Информация о посетителе</h5>
+                <div class="form__wrapper">
+                    <input required class="form__lastname" placeholder="Фамилия" name="lastname" type="text">
+                    <input required class="form__name" placeholder="Имя" name="name" type="text">
+                    <input required class="form__middlename" placeholder="Отчество" name="middlename" type="text">
+                    <input required class="form__email" placeholder="E-mail" name="email" type="email">
+                    <input required class="form__tel" placeholder="Номер телефона" name="tel" type="number">
+                    <label class="form__social-status-wrapper">
+                        Формат посещения
+                        <select required class="form__social-status" name="social-status" id="">
+                            <option value="full">Полный</option>
+                            <option value="discount">Льготный</option>
+                            <option value="elderly">Для пожилых</option>
+                        </select>
+                    </label>
+                </div>
+                <input class="form__submit-btn" type="submit" name="" value="Записаться">
+            </form>
+        </div>
+    </div>
+</div>
+
