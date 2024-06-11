@@ -10,6 +10,6 @@ namespace MuseumSystem.Application.RepositoryContracts
 
         public Task CreateAsync(Museum museum);
         public Task UpdateAsync(Museum museum);
-        public Task DeleteAsync(int id);
+        public Task DeleteAsync(Museum museum);
     }
 }

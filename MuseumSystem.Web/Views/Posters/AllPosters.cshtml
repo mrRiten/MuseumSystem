@@ -1,0 +1,12 @@
+﻿@{
+}
+
+@model MuseumSystem.Core.ModelsDTO.MuseumDTO;
+
+<h1>@Model.Museum.Name</h1>
+
+@foreach(var eventItem in Model.Events)
+{
+    <h3>@Model.Museum.Name</h3>
+    <p><a href="posters/@eventItem.SlugEvent">@eventItem.NameEvent</a></p>
+}

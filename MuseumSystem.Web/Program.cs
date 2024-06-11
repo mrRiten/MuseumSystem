@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using MuseumSystem.Application.RepositoryContracts;
+using MuseumSystem.Application.ServiceContracts;
 using MuseumSystem.Core;
+using MuseumSystem.Infrastructure.Repositories;
+using MuseumSystem.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +15,12 @@ builder.Services.AddDbContext<MuseumSystemDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly("MuseumSystem.Web")),
         ServiceLifetime.Scoped);
+
+builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<IMuseumRepository, MuseumRepository>();
+builder.Services.AddScoped<IRecordRepository, RecordRepository>();
+builder.Services.AddScoped<IMuseumService, MuseumService>();
+builder.Services.AddScoped<IEventService, EventService>();
 
 var app = builder.Build();
 

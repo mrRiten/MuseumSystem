@@ -28,7 +28,7 @@ namespace MuseumSystem.Core.Models
         public decimal FullPrice { get; set; }
 
         public Museum Museum { get; set; }
-        public List<ImageEvent> ImageEvents { get; set; }
-        public List<Record> Record { get; set; }
+        public ICollection<ImageEvent> ImageEvents { get; set; }
+        public ICollection<Record> Records { get; set; }
     }
 }

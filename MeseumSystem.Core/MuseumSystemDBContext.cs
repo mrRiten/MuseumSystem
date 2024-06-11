@@ -34,7 +34,7 @@ namespace MuseumSystem.Core
 
             modelBuilder.Entity<Record>()
                 .HasOne(r => r.Event)
-                .WithMany(e => e.Record)
+                .WithMany(e => e.Records)
                 .HasForeignKey(r => r.EventId);
 
             modelBuilder.Entity<RecordClient>()
