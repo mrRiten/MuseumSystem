@@ -8,6 +8,7 @@ namespace MuseumSystem.Application.RepositoryContracts
         public Task<Client> GetAsync(string fullName);
         public Task<ICollection<Client>> GetByRecord(int recordId);
         public Task<Client> GetLast();
+        public Client? GetByEmail(string email);
 
         public Task CreateAsync(Client client);
         public Task UpdateAsync(Client client);

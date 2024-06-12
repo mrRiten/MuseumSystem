@@ -7,6 +7,7 @@ namespace MuseumSystem.Application.ServiceContracts
     {
         public Task CreateClientAsync(UploadRecord model);
         public Task<Client> GetClient(int id);
+        public bool CheckUniqueClient(string email, out int userId);
         public Task<Client> GetLastClient();
     }
 }

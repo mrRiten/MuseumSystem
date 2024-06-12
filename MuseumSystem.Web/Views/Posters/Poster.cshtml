@@ -69,21 +69,21 @@
                     <span id="modal_time"></span>
                 </time>
             </div>
-            <form class="modal__form form" action="">
+            <form class="modal__form form" method="post" asp-action="Poster" asp-controller="Posters">
                 <h5 class="form__title">Информация о посетителе</h5>
                 <div class="form__wrapper">
-                    <input id="recordid" asp-for="@Model.UploadRecord.RecordId" hidden="hidden" />
-                    <input required class="form__lastname" placeholder="Фамилия" name="lastname" type="text">
-                    <input required class="form__name" placeholder="Имя" name="name" type="text">
-                    <input required class="form__middlename" placeholder="Отчество" name="middlename" type="text">
-                    <input required class="form__email" placeholder="E-mail" name="email" type="email">
-                    <input required class="form__tel" placeholder="Номер телефона" name="tel" type="number">
+                    <input value="" id="recordid" asp-for="@Model.UploadRecord.RecordId" hidden="hidden" />
+                    <input asp-for="@Model.UploadRecord.LastName" required class="form__lastname" placeholder="Фамилия" type="text">
+                    <input asp-for="@Model.UploadRecord.FirstName" required class="form__name" placeholder="Имя" type="text">
+                    <input asp-for="@Model.UploadRecord.MiddleName" required class="form__middlename" placeholder="Отчество" type="text">
+                    <input asp-for="@Model.UploadRecord.Email" required class="form__email" placeholder="E-mail" type="email">
+                    <input asp-for="@Model.UploadRecord.PhoneNumber" required class="form__tel" placeholder="Номер телефона" type="number">
                     <label class="form__social-status-wrapper">
                         Формат посещения
-                        <select required class="form__social-status" name="social-status" id="">
-                            <option value="full">Полный</option>
-                            <option value="discount">Льготный</option>
-                            <option value="elderly">Для пожилых</option>
+                        <select asp-for="@Model.UploadRecord.Price" required class="form__social-status" id="">
+                            <option value="@Model.CurrentEvent.FullPrice">Полный</option>
+                            <option value="@Model.CurrentEvent.PreferentialPrice">Льготный</option>
+                            <option value="@Model.CurrentEvent.PreferentialPrice">Для пожилых</option>
                         </select>
                     </label>
                 </div>

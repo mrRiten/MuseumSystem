@@ -12,8 +12,8 @@ using MuseumSystem.Core;
 namespace MuseumSystem.Web.Migrations
 {
     [DbContext(typeof(MuseumSystemDbContext))]
-    [Migration("20240611213659_fixRecordClient")]
-    partial class fixRecordClient
+    [Migration("20240612121556_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
