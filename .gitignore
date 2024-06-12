@@ -3,9 +3,6 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-./MuseumSystem.Web/appsettings.Development.json
-./MuseumSystem.Web/Migrations/
-
 
 # User-specific files
 *.rsuser
@@ -366,3 +363,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /MuseumSystem.Web/appsettings.Development.json
+/MuseumSystem.Web/Migration/
