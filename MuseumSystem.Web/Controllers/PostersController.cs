@@ -32,6 +32,7 @@ namespace MuseumSystem.Web.Controllers
         public async Task<IActionResult> Poster(string slugEvent)
         {
             var currentEvent = await _eventService.GetEventBySlug(slugEvent);
+            currentEvent.ImageEvents = await _eventService.GetImages(currentEvent.IdEvent);
             var museum = await _museumService.GetAsync(currentEvent.MuseumId);
 
             var posterDTO = new PosterDTO

@@ -21,6 +21,7 @@ builder.Services.AddScoped<IMuseumRepository, MuseumRepository>();
 builder.Services.AddScoped<IRecordRepository, RecordRepository>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IRecordClientRepository, RecordClientRepository>();
+builder.Services.AddScoped<IImageEventRepository, ImageEventRepository>();
 builder.Services.AddScoped<IMuseumService, MuseumService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IRecordService, RecordService>();
