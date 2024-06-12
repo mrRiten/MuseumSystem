@@ -17,7 +17,6 @@ for (let i = 0; i < record_item.length; i++) {
             const target_date = record_item[i].children[0];
             modal_date.innerHTML = target_date.innerHTML;
             record_id.value = time_btn_collection[j].value;
-            console.log(time_btn_collection[j]);
         }
     }
 }

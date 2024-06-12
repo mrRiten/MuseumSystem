@@ -35,6 +35,11 @@ namespace MuseumSystem.Infrastructure.Repositories
                 c => c.FirstName + c.LastName + c.MiddleName == fullName);
         }
 
+        public Client? GetByEmail(string email)
+        {
+            return _context.Clients.FirstOrDefault(c => c.Email == email);
+        }
+
         public async Task<ICollection<Client>> GetByRecord(int recordId)
         {
             var records = await _context.RecordClients.Where(r => r.RecordId == recordId).ToListAsync();

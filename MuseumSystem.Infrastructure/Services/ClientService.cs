@@ -9,6 +9,20 @@ namespace MuseumSystem.Infrastructure.Services
     {
         private readonly IClientRepository _clientRepository = clientRepository;
 
+        public bool CheckUniqueClient(string email, out int clientId)
+        {
+            var client = _clientRepository.GetByEmail(email);
+
+            if (client == null)
+            {
+                clientId = 0;
+                return true;
+            }
+
+            clientId = client.IdClient;
+            return false;
+        }
+
         public async Task CreateClientAsync(UploadRecord model)
         {
             var client = new Client

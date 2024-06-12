@@ -43,26 +43,42 @@ namespace MuseumSystem.Web.Controllers
             return View(posterDTO);
         }
 
-        [HttpPost]
+        [HttpPost("posters/{slugEvent}")]
         public async Task<IActionResult> Poster(PosterDTO posterDTO, string slugEvent)
         {
             if (ModelState.IsValid)
             {
-                _clientService.CreateClientAsync(posterDTO.UploadRecord);
-                var client = await _clientService.GetLastClient();
-
-                var clientRecord = new RecordClient
+                if (_clientService.CheckUniqueClient(posterDTO.UploadRecord.Email, out var userId))
                 {
-                    RecordId = posterDTO.UploadRecord.RecordId,
-                    ClientId = client.IdClient,
-                    RecordPrice = posterDTO.UploadRecord.Price,
-                };
+                    await _clientService.CreateClientAsync(posterDTO.UploadRecord);
+                    var client = await _clientService.GetLastClient();
 
-                await _recordService.CreateRecordClient(clientRecord);
+                    var clientRecord = new RecordClient
+                    {
+                        RecordId = posterDTO.UploadRecord.RecordId,
+                        ClientId = client.IdClient,
+                        RecordPrice = posterDTO.UploadRecord.Price,
+                    };
 
-                return Redirect($"posters/{slugEvent}");
+                    await _recordService.CreateRecordClient(clientRecord);
+                }
+                else
+                {
+                    var clientRecord = new RecordClient
+                    {
+                        RecordId = posterDTO.UploadRecord.RecordId,
+                        ClientId = userId,
+                        RecordPrice = posterDTO.UploadRecord.Price,
+                    };
+
+                    await _recordService.CreateRecordClient(clientRecord);
+                }
+
+                
+
+                return RedirectToAction(nameof(Poster), new { slugEvent = slugEvent });
             }
-            
+
             return View(posterDTO);
         }
 
