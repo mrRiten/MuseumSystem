@@ -2,7 +2,7 @@
 {
     public interface IEmailService
     {
-        public Task SendAsync(string email, string text);
+        public Task SendAsync(string ToEmail, string message, string subject);
 
     }
 }

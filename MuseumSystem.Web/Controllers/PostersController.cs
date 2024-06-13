@@ -6,12 +6,13 @@ using MuseumSystem.Core.ModelsDTO;
 namespace MuseumSystem.Web.Controllers
 {
     public class PostersController(IEventService eventService, IMuseumService museumService,
-        IClientService clientService, IRecordService recordService) : Controller
+        IClientService clientService, IRecordService recordService, IEmailService emailService) : Controller
     {
         private readonly IEventService _eventService = eventService;
         private readonly IMuseumService _museumService = museumService;
         private readonly IClientService _clientService = clientService;
         private readonly IRecordService _recordService = recordService;
+        private readonly IEmailService _emailService = emailService;
 
         [HttpGet("posters")]
         public async Task<IActionResult> AllPosters(string slugMuseum)
@@ -75,7 +76,7 @@ namespace MuseumSystem.Web.Controllers
                     await _recordService.CreateRecordClient(clientRecord);
                 }
 
-                
+                await _emailService.SendAsync(posterDTO.UploadRecord.Email, $"Вы записались", "Оповещение");
 
                 return RedirectToAction(nameof(Poster), new { slugEvent = slugEvent });
             }
