@@ -2,6 +2,237 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Админ панель";
 }
 
-<h1>Admin Page</h1>
+<link rel="stylesheet" href="~/css/Admin/index.css" asp-append-version="true" />
+
+<header class="header">
+    <a href="#" class="header__logo">
+        <img class="header__logo-img" src="~/img/logo.png" alt="Логотип">
+    </a>
+
+    <ul class="header__btn-list">
+        <li class="header__btn-item">
+            <button class="header__btn">Создать мероприятие</button>
+        </li>
+        <li class="header__btn-item">
+            <button class="header__btn">Список мест</button>
+        </li>
+        <li class="header__btn-item">
+            <button class="header__btn">Архив мероприятий</button>
+        </li>
+    </ul>
+
+
+    <div class="header__info">
+        <h1 class="header__title">Панель администратора</h1>
+        <h3 class="header__subtitle">Название музея</h3>
+    </div>
+    <button class="header__burger-munu">
+        <img src="../img/burger-menu.svg" alt="">
+    </button>
+    <div class="header__avatar">
+        <img class="header__avatar-img" src="~/img/avatar.png" alt="аватарка">
+    </div>
+
+</header>
+
+<main id="main" class="main">
+    <section class="client-info">
+        <div class="client-info__header">
+            <h2 class="client-info__title">Информация о клиентах</h2>
+            <div class="client-info__search">
+                <input class="client-info__search-input" placeholder="Поиск" type="text">
+                <button>
+                    <img class="client-info__search-img" src="~/img/search.svg" alt="Иконка поиска">
+                </button>
+            </div>
+        </div>
+
+        <div class="mobile-table">
+            <table id="client_info_table" class="client-info__table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Фамилия</th>
+                        <th>Имя</th>
+                        <th>Отчество</th>
+                        <th>E-mail</th>
+                        <th>Телефон</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-cell="id">1</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">2</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">3</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">4</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">5</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">6</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">7</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">8</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">9</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">10</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">11</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">12</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">13</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+
+                    <tr>
+                        <td data-cell="id">14</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">15</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">16</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">17</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="id">18</td>
+                        <td data-cell="Фамилия">Иванов</td>
+                        <td data-cell="Имя">Иван</td>
+                        <td data-cell="Отчество">Иванович</td>
+                        <td data-cell="E-mail">ivanivanovich3123@mail.ru</td>
+                        <td data-cell="Телефон">8(800)555-35-35</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="event_info" class="event-info">
+        <h2 class="event-info__title">Мероприятия клиента <span id="current_event_id"></span></h2>
+        <ul class="event-info__list">
+            <li class="event-info__item">
+                <p class="event-info__museum-name">Название музея</p>
+                <p class="event-info__name">Название мероприятия</p>
+                <p class="event-info__time">Время</p>
+            </li>
+            <li class="event-info__item">
+                <p class="event-info__museum-name">Название музея</p>
+                <p class="event-info__name">Название мероприятия</p>
+                <p class="event-info__time">Время</p>
+            </li>
+            <li class="event-info__item">
+                <p class="event-info__museum-name">Название музея</p>
+                <p class="event-info__name">Название мероприятия</p>
+                <p class="event-info__time">Время </p>
+            </li>
+        </ul>
+    </section>
+</main>
+
+<script src="~/js/Admin/index.js"></script>
