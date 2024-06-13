@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" href="~/css/poster.css" asp-append-version="true" />
 
-<h1 class="main__title">@Model.CurrentEvent.NameEvent</h1>
+<h1 id="event_name" class="main__title">@Model.CurrentEvent.NameEvent</h1>
 
 <a class="poster__museum" href="#">
     <img src="~/img/poster-museum-icon.svg" alt="" />
@@ -57,7 +57,7 @@
         </button>
         <div class="modal__content">
             <h3 class="modal__title">Запись на мероприятие</h3>
-            <h4 class="modal__name-event">Название мероприятия</h4>
+            <h4 id="modal_event_name" class="modal__name-event">Название мероприятия</h4>
             <div class="modal__datetime-wrapper">
                 <h4 class="modal__datetime-title">Мероприятие начнется</h4>
                 <time class="modal__datetime" datetime="">

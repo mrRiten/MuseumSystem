@@ -6,9 +6,17 @@
 
 @model MuseumSystem.Core.UploadModels.UploadLoginAdmin;
 
+<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
 
-<form asp-action="Login" asp-controller="Authorize" method="post">
-    <input asp-for="Login" />
-    <input asp-for="Password" />
-    <input type="submit"/>
-</form>
+<div id="login" class="login">
+    <div class="login__wrapper">
+        <h3 class="login__title">Вход в учётную запись администратора</h3>
+        <form asp-action="Login" asp-controller="Authorize" method="post" class="login__form form">
+            <div class="form__wrapper">
+                <input required asp-for="Password" class="form__login" placeholder="Логин" name="login" type="text">
+                <input required asp-for="Login" class="form__pass" placeholder="Пароль" name="password" type="password">
+            </div>
+            <input class="form__submit-btn" type="submit" name="" value="Войти">
+        </form>
+    </div>
+</div>

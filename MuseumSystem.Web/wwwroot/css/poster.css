@@ -162,7 +162,6 @@
 }
 
 .modal__name-event {
-    margin-top: 5px;
     font-size: 11px;
     opacity: 0.6;
     display: -webkit-box;
@@ -219,13 +218,15 @@
     gap: 5px;
 }
 
+.form__social-status {
+    border-bottom: 1px solid rgba(87, 87, 87, 0.4);
+}
 .form__social-status:focus {
     outline: none;
 }
 
-
 .form__social-status:focus-visible {
-    outline: 1px solid #c6c6c6;
+    outline: none;
 }
 
 .form__submit-btn {
