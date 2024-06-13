@@ -7,9 +7,12 @@ namespace MuseumSystem.Core.Models
         [Key]
         public int IdAdmin { get; set; }
 
-        public string AdminName { get; set; }
+        public string Login { get; set; }
 
         public string HashPassword {  get; set; }
+
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
 
         public int MuseumId { get; set; }
         public Museum Museum { get; set; }

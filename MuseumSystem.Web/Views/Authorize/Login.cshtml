@@ -3,3 +3,12 @@
 *@
 @{
 }
+
+@model MuseumSystem.Core.UploadModels.UploadLoginAdmin;
+
+
+<form asp-action="Login" asp-controller="Authorize" method="post">
+    <input asp-for="Login" />
+    <input asp-for="Password" />
+    <input type="submit"/>
+</form>

@@ -1,11 +1,15 @@
-﻿namespace MuseumSystem.Application.ServiceContracts
+﻿using MuseumSystem.Core.Models;
+using MuseumSystem.Core.UploadModels;
+
+namespace MuseumSystem.Application.ServiceContracts
 {
     public interface IAdminService
     {
-        public Task Login(string username, string password);
-        public Task Logout();
+        public Task<Admin> GetAdminAsync(int id);
+        public Task<Admin> GetAdminAsync(string name);
 
-        // For develop time
-        public Task DevReg(string username, string password);
+        public Task CreateAsync(UploadRegisterAdmin uploadAdmin);
+        public Task DeleteAsync(int id);
+        public Task UpdateAsync(Admin admin);
     }
 }

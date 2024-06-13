@@ -5,11 +5,13 @@ using MuseumSystem.Core.Models;
 namespace MuseumSystem.Infrastructure.Services
 {
     public class EventService(IEventRepository eventRepository, IRecordRepository recordRepository,
-        IImageEventRepository imageEventRepository) : IEventService
+        IImageEventRepository imageEventRepository, IRecordClientRepository recordClientRepository) : IEventService
     {
         private readonly IEventRepository _eventRepository = eventRepository;
         private readonly IRecordRepository _recordRepository = recordRepository;
         private readonly IImageEventRepository _imageEventRepository = imageEventRepository;
+        private readonly IRecordClientRepository _recordClientRepository = recordClientRepository;
+
 
         public async Task<ICollection<Event>> GetEventByMuseum(int museumId)
         {
@@ -32,6 +34,11 @@ namespace MuseumSystem.Infrastructure.Services
         public async Task<ICollection<ImageEvent>> GetImages(int eventId)
         {
             return await _imageEventRepository.GetAllByEventAsync(eventId);
+        }
+
+        public async Task<ICollection<Record>> GetRecordsByClient(int clientId)
+        {
+            return await _recordClientRepository.GetByClientAsync(clientId);
         }
     }
 }
