@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using MuseumSystem.Application.RepositoryContracts;
 using MuseumSystem.Application.ServiceContracts;
@@ -16,11 +17,19 @@ builder.Services.AddDbContext<MuseumSystemDbContext>(options =>
         b => b.MigrationsAssembly("MuseumSystem.Web")),
         ServiceLifetime.Scoped);
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options => options.LoginPath = "/Authorize/Login");
+
+
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IMuseumRepository, MuseumRepository>();
 builder.Services.AddScoped<IRecordRepository, RecordRepository>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IRecordClientRepository, RecordClientRepository>();
+builder.Services.AddScoped<IImageEventRepository, ImageEventRepository>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IAuthorizeService, AuthorizeService>();
 builder.Services.AddScoped<IMuseumService, MuseumService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IRecordService, RecordService>();

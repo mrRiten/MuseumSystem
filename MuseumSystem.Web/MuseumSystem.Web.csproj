@@ -21,4 +21,8 @@
     <ProjectReference Include="..\MuseumSystem.Infrastructure\MuseumSystem.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

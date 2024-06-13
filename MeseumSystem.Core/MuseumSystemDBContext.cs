@@ -8,6 +8,7 @@ namespace MuseumSystem.Core
         public MuseumSystemDbContext(DbContextOptions<MuseumSystemDbContext> options) : base(options) { }
 
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<ImageEvent> ImageEvents { get; set; }
@@ -17,6 +18,11 @@ namespace MuseumSystem.Core
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Admin>()
+                .HasOne(a => a.Role)
+                .WithMany(r => r.Admins)
+                .HasForeignKey(a => a.RoleId);
+
             modelBuilder.Entity<Admin>()
                 .HasOne(a => a.Museum)
                 .WithMany(m => m.Admins)

@@ -24,32 +24,31 @@
         </div>
     </div>
     <div class="exhibition-detail__wrapper-images">
-        <img class="exhibition-detail__img" src="~/img/examle.jpeg" alt="">
+        @foreach (var image in Model.CurrentEvent.ImageEvents)
+        {
+            <img class="exhibition-detail__img" src="~/upload/@image.EventId/@image.NamePath" alt="">
+        }
     </div>
 </section>
 
 <section class="record">
     <h3 class="record__title">Записаться онлайн</h3>
     <ul class="record__list">
-        <li class="record__item">
-            <time class="record__item-date" datetime="">25 июня</time>
-            <div class="record__time-wrapper">
-                @foreach(var item in Model.CurrentEvent.Records)
-                {
-                    <button value="@item.IdRecord" class="record__time-btn">@item.dateTime</button>
-                }
-            </div>
-        </li>
-
-        <li class="record__item">
-            <time class="record__item-date" datetime="">24 июня</time>
-            <div class="record__time-wrapper">
-                @foreach (var item in Model.CurrentEvent.Records)
-                {
-                    <button value="@item.IdRecord" class="record__time-btn">@item.dateTime</button>
-                }
-            </div>
-        </li>
+        @{
+            var groupedRecords = Model.CurrentEvent.Records.GroupBy(r => r.dateTime.Date);
+            foreach (var group in groupedRecords)
+            {
+            <li class="record__item">
+                <time class="record__item-date" datetime="@group.Key.ToString("yyyy-MM-dd")">@group.Key.ToString("dd MMMM")</time>
+                <div class="record__time-wrapper">
+                        @foreach (var item in group)
+                        {
+                        <button value="@item.IdRecord" class="record__time-btn">@item.dateTime.ToString("HH:mm")</button>
+                        }
+                </div>
+            </li>
+            }
+        }
     </ul>
 </section>
 
@@ -82,8 +81,14 @@
                         Формат посещения
                         <select asp-for="@Model.UploadRecord.Price" required class="form__social-status" id="">
                             <option value="@Model.CurrentEvent.FullPrice">Полный</option>
-                            <option value="@Model.CurrentEvent.PreferentialPrice">Льготный</option>
-                            <option value="@Model.CurrentEvent.PreferentialPrice">Для пожилых</option>
+                            @if(Model.CurrentEvent.PreferentialPrice != null)
+                            {
+                                <option value="@Model.CurrentEvent.PreferentialPrice">Льготный</option>
+                            }
+                            @if (Model.CurrentEvent.RetirementPrice != null)
+                            {
+                                <option value="@Model.CurrentEvent.RetirementPrice">Для пожилых</option>
+                            }
                         </select>
                     </label>
                 </div>

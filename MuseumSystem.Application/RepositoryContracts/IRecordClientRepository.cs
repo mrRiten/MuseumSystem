@@ -4,7 +4,7 @@ namespace MuseumSystem.Application.RepositoryContracts
 {
     public interface IRecordClientRepository
     {
-        public Task<ICollection<RecordClient>> GetByClientAsync(int clientId);
+        public Task<ICollection<Record>> GetByClientAsync(int clientId);
         public Task<ICollection<RecordClient>> GetByRecordAsync(int recordId);
 
         public Task CreateAsync(RecordClient recordClient);

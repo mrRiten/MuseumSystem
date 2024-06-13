@@ -30,9 +30,15 @@ namespace MuseumSystem.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<RecordClient>> GetByClientAsync(int clientId)
+        public async Task<ICollection<Record>> GetByClientAsync(int clientId)
         {
-            return await _context.RecordClients.Where(rc => rc.ClientId == clientId).ToArrayAsync();
+            return await _context.RecordClients
+                .Where(rc => rc.ClientId == clientId)
+                .Include(rc => rc.Record)
+                .ThenInclude(r => r.dateTime)
+                .Where(rc => rc.Record.dateTime.Day >= DateTime.Today.Day)
+                .Select(rc => rc.Record)
+                .ToArrayAsync();
         }
 
         public async Task<ICollection<RecordClient>> GetByRecordAsync(int recordId)
@@ -46,5 +52,6 @@ namespace MuseumSystem.Infrastructure.Repositories
 
             await _context.SaveChangesAsync();
         }
+
     }
 }
