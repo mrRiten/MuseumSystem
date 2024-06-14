@@ -50,10 +50,17 @@ namespace MuseumSystem.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var client = await _clientService.GetLastClient();
+
+                var emailData = new EmailData
+                {
+                    ClientId = 0,
+                    TargetEventId = _eventService.GetByRecord(posterDTO.UploadRecord.RecordId).IdEvent,
+                    TargetRecordId = posterDTO.UploadRecord.RecordId
+                };
 
                 if (_clientService.CheckUniqueClient(posterDTO.UploadRecord.Email, out var clientId))
                 {
+                    var client = await _clientService.GetLastClient();
                     await _clientService.CreateClientAsync(posterDTO.UploadRecord);
 
                     var clientRecord = new RecordClient
@@ -64,6 +71,7 @@ namespace MuseumSystem.Web.Controllers
                     };
 
                     await _recordService.CreateRecordClient(clientRecord);
+                    emailData.ClientId = client.IdClient;
                 }
                 else
                 {
@@ -75,14 +83,8 @@ namespace MuseumSystem.Web.Controllers
                     };
 
                     await _recordService.CreateRecordClient(clientRecord);
+                    emailData.ClientId = clientId;
                 }
-
-                var emailData = new EmailData
-                {
-                    ClientId = client.IdClient,
-                    TargetEventId = _eventService.GetByRecord(posterDTO.UploadRecord.RecordId).IdEvent,
-                    TargetRecordId = posterDTO.UploadRecord.RecordId
-                };
 
                 await _emailDataService.CreateAsync(emailData);
 

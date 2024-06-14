@@ -365,3 +365,4 @@ FodyWeavers.xsd
 /MuseumSystem.Web/appsettings.Development.json
 Migration
 /MuseumSystem.Web/Migrations
+/EmailMicroService/appsettings.json

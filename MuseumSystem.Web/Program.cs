@@ -19,17 +19,6 @@ builder.Services.AddDbContext<MuseumSystemDbContext>(options =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options => options.LoginPath = "/Authorize/Login");
 
-using (var config = builder.Configuration)
-{
-    builder.Services.AddSingleton<IEmailService>(new EmailService(
-        config["SMTP:Server"],
-        int.Parse(config["SMTP:Port"]),
-        config["SMTP:Address"],
-        config["SMTP:Password"],
-        config["SMTP:Name"]
-        ));
-}
-
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<IEmailDataRepository, EmailDataRepository>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
