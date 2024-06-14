@@ -43,7 +43,7 @@ namespace EmailMicroService
                     await emailDataService.DeleteAsync(item.IdEmailData);
                 }
 
-                await Task.Delay(TimeSpan.FromMinutes(1));
+                await Task.Delay(TimeSpan.FromSeconds(15));
             }
         }
     }

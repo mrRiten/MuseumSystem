@@ -28,7 +28,7 @@ namespace MuseumSystem.Core
             modelBuilder.Entity<EmailData>()
                 .HasOne(ed => ed.TargetRecord)
                 .WithMany(c => c.EmailDatas)
-                .HasForeignKey(ed => ed.TargetEventId)
+                .HasForeignKey(ed => ed.TargetRecordId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<EmailData>()
