@@ -6,6 +6,7 @@ namespace MuseumSystem.Infrastructure.Services
 {
     public class EmailService : IEmailService
     {
+
         private readonly string _smtpServer;
         private readonly int _smtpPort;
         private readonly string _smtpUser;

@@ -7,6 +7,7 @@ namespace MuseumSystem.Application.RepositoryContracts
         public Task<Event> GetAsync(int id);
         public Task<Event> GetAsync(string slug);
         public Task<ICollection<Event>> GetByMuseumAsync(int museumId);
+        public Event GetByRecord(int recordId);
     
         public Task CreateAsync(Event eventItem);
         public Task UpdateAsync(Event eventItem);

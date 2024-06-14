@@ -13,7 +13,7 @@ namespace MuseumSystem.Web.Controllers
         public async Task<IActionResult> Museum(string museumSlug)
         {
             var museum = await _museumService.GetAsync(museumSlug);
-            var events = await _eventService.GetEventByMuseum(museum.IdMuseum);
+            var events = await _eventService.GetByMuseum(museum.IdMuseum);
 
             var museumDTO = new MuseumDTO
             {

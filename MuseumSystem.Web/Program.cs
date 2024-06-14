@@ -31,6 +31,7 @@ using (var config = builder.Configuration)
 }
 
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+builder.Services.AddScoped<IEmailDataRepository, EmailDataRepository>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IMuseumRepository, MuseumRepository>();
 builder.Services.AddScoped<IRecordRepository, RecordRepository>();
@@ -43,6 +44,7 @@ builder.Services.AddScoped<IMuseumService, MuseumService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IRecordService, RecordService>();
 builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IEmailDataService, EmailDataService>();
 
 var app = builder.Build();
 

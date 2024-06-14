@@ -8,6 +8,7 @@ namespace MuseumSystem.Core
         public MuseumSystemDbContext(DbContextOptions<MuseumSystemDbContext> options) : base(options) { }
 
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<EmailData> EmailDatas { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Event> Events { get; set; }
@@ -18,6 +19,24 @@ namespace MuseumSystem.Core
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<EmailData>()
+                .HasOne(ed => ed.TargetEvent)
+                .WithMany(c => c.EmailDatas)
+                .HasForeignKey(ed => ed.TargetEventId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<EmailData>()
+                .HasOne(ed => ed.TargetRecord)
+                .WithMany(c => c.EmailDatas)
+                .HasForeignKey(ed => ed.TargetEventId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<EmailData>()
+                .HasOne(ed => ed.Client)
+                .WithMany(c => c.EmailDatas)
+                .HasForeignKey(ed => ed.ClientId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<Admin>()
                 .HasOne(a => a.Role)
                 .WithMany(r => r.Admins)

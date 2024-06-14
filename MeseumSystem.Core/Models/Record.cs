@@ -12,5 +12,6 @@ namespace MuseumSystem.Core.Models
         public DateTime dateTime { get; set; }
 
         public Event Event { get; set; }
+        public ICollection<EmailData> EmailDatas { get; set; }
     }
 }

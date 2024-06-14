@@ -13,12 +13,17 @@ namespace MuseumSystem.Infrastructure.Services
         private readonly IRecordClientRepository _recordClientRepository = recordClientRepository;
 
 
-        public async Task<ICollection<Event>> GetEventByMuseum(int museumId)
+        public async Task<ICollection<Event>> GetByMuseum(int museumId)
         {
             return await _eventRepository.GetByMuseumAsync(museumId);
         }
 
-        public async Task<Event> GetEventBySlug(string slug)
+        public Event GetByRecord(int recordId)
+        {
+            return _eventRepository.GetByRecord(recordId);
+        }
+
+        public async Task<Event> GetBySlug(string slug)
         {
             var currentEvent = await _eventRepository.GetAsync(slug);
             currentEvent.Records = await _recordRepository.GetByEventAsync(currentEvent.IdEvent);

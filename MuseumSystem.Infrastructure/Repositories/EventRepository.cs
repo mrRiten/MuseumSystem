@@ -44,6 +44,13 @@ namespace MuseumSystem.Infrastructure.Repositories
                 .Where(e => e.MuseumId == museumId).ToListAsync();
         }
 
+        public Event GetByRecord(int recordId)
+        {
+            return _context.Records
+                .Include(r => r.Event)
+                .FirstOrDefault(r => r.IdRecord == recordId).Event;
+        }
+
         public async Task UpdateAsync(Event eventItem)
         {
             _context.Events.Update(eventItem);
