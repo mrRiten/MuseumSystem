@@ -42,6 +42,11 @@ namespace MuseumSystem.Infrastructure.Services
             return await _clientRepository.GetAsync(id);
         }
 
+        public async Task<ICollection<Client>> GetClients()
+        {
+            return await _clientRepository.GetAllAsync();
+        }
+
         public async Task<Client> GetLastClient()
         {
             return await _clientRepository.GetLast();

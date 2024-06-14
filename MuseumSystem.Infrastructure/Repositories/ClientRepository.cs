@@ -24,6 +24,11 @@ namespace MuseumSystem.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<ICollection<Client>> GetAllAsync()
+        {
+            return await _context.Clients.ToArrayAsync();
+        }
+
         public async Task<Client> GetAsync(int id)
         {
             return await _context.Clients.FindAsync(id);
