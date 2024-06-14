@@ -14,7 +14,6 @@ for (let i = 0; i < record_item.length; i++) {
             modal.style.display = "flex";
             document.body.style.overflow = "hidden";
             modal_event_name.innerHTML = event_name.innerHTML;
-            console.log(modal_event_name);
             modal_time.innerHTML = time_btn_collection[j].innerHTML;
 
             const target_date = record_item[i].children[0];

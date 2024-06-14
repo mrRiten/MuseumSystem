@@ -6,6 +6,7 @@
 }
 
 <link rel="stylesheet" href="~/css/Admin/index.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Admin/modal-create-event.css" asp-append-version="true" />
 
 <header class="header">
     <a href="#" class="header__logo">
@@ -13,7 +14,7 @@
     </a>
 
     <ul class="header__btn-list">
-        <li class="header__btn-item">
+        <li id="create_enent_btn" class="header__btn-item">
             <button class="header__btn">Создать мероприятие</button>
         </li>
         <li class="header__btn-item">
@@ -233,6 +234,47 @@
             </li>
         </ul>
     </section>
+
+    <div id="create_event" class="modal">
+        <div class="modal__wrapper">
+            <button id="create_event_close_btn" class="modal__close">
+                <img src="../img/close.png" alt="закрыть">
+            </button>
+            <div class="modal__content">
+                <h3 class="modal__title">Создать мероприятие</h3>
+                <form class="modal__form form" enctype="multipart/form-data" action="">
+                    <h5 class="form__title">Информация о мероприятии</h5>
+                    <div class="form__wrapper">
+                        <select required class="form__museum" name="museum" id="">
+                            <option disabled selected hidden value="">Выбрать музей организатор</option>
+                            <option value="">Какой-то музей</option>
+                            <option value="">Какой-то музей</option>
+                        </select>
+                        <input required class="form__event-name" placeholder="Название мероприятия" name="event-name" type="text">
+                        <input required class="form__date" placeholder="Дата проведения" name="date" type="text">
+                        <input required class="form__time" placeholder="Время проведения" name="time" type="text">
+                        <input required min="0" class="form__age" placeholder="Возрастной рейтинг" name="age" type="number">
+                        <label class="form__price" for="">
+                            <p class="form__price-text">Цена билета</p>
+                            <div class="form__price-wrapper">
+                                <input required min="0" class="form__full-price" placeholder="Полный" name="" type="number">
+                                <input min="0" class="form__preferential-price" placeholder="Льготный" name="" type="number">
+                                <input min="0" class="form__elderly-price" placeholder="Пожилой" name="" type="number">
+                            </div>
+                        </label>
+                        <input required class="form__img" placeholder="Номер телефона" name="" type="file" multiple="multiple">
+
+                        <label class="form__comment-wrapper" for="">
+                            Комментарий к мероприятию
+                            <textarea class="form__comment" name="" id=""></textarea>
+                        </label>
+                    </div>
+                    <input class="form__submit-btn" type="submit" name="" value="Записаться">
+                </form>
+            </div>
+        </div>
+    </div>
 </main>
 
 <script src="~/js/Admin/index.js"></script>
+<script src="~/js/Admin/modal-create-event.js"></script>
