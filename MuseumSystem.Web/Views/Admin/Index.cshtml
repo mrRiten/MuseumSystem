@@ -84,11 +84,18 @@
     <section id="event_info" class="event-info">
         <h2 class="event-info__title">Мероприятия клиента <span id="current_event_id"></span></h2>
         <ul class="event-info__list">
-            <li class="event-info__item">
-                <p class="event-info__museum-name">Название музея</p>
-                <p class="event-info__name">Название мероприятия</p>
-                <p class="event-info__time">Время</p>
-            </li>
+            @foreach (var client in Model.Clients)
+            {
+                foreach (var item in client.Records)
+                {
+                    <li class="event-info__item">
+                        <p class="event-info__museum-name">@item.Event.Museum.Name</p>
+                        <p class="event-info__name">@item.Event.NameEvent</p>
+                        <p class="event-info__time">@item.dateTime</p>
+                    </li>
+                }
+            }
+            
             <li class="event-info__item">
                 <p class="event-info__museum-name">Название музея</p>
                 <p class="event-info__name">Название мероприятия</p>
