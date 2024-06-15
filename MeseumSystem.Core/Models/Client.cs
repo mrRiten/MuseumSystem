@@ -17,6 +17,8 @@ namespace MuseumSystem.Core.Models
 
         public string PhoneNumber { get; set; }
 
+        public ICollection<Record> Records { get; set; }
+        public ICollection<RecordClient> RecordClients { get; set; }
         public ICollection<EmailData> EmailDatas { get; set; }
     }
 }
