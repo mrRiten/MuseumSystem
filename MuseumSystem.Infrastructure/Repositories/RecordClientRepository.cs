@@ -35,7 +35,8 @@ namespace MuseumSystem.Infrastructure.Repositories
             return await _context.RecordClients
                 .Where(rc => rc.ClientId == clientId)
                 .Include(rc => rc.Record)
-                .ThenInclude(r => r.dateTime)
+                    .ThenInclude(r => r.Event)
+                        .ThenInclude(e => e.Museum)
                 .Where(rc => rc.Record.dateTime.Day >= DateTime.Today.Day)
                 .Select(rc => rc.Record)
                 .ToArrayAsync();

@@ -19,6 +19,10 @@ namespace MuseumSystem.Core
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
+
+
             modelBuilder.Entity<EmailData>()
                 .HasOne(ed => ed.TargetEvent)
                 .WithMany(c => c.EmailDatas)
@@ -64,12 +68,12 @@ namespace MuseumSystem.Core
 
             modelBuilder.Entity<RecordClient>()
                 .HasOne(rc => rc.Record)
-                .WithMany()
+                .WithMany(r => r.RecordClients)
                 .HasForeignKey(rc => rc.RecordId);
 
             modelBuilder.Entity<RecordClient>()
                 .HasOne(rc => rc.Client)
-                .WithMany()
+                .WithMany(c => c.RecordClients)
                 .HasForeignKey(rc => rc.ClientId);
 
             // Дополнительные конфигурации могут быть добавлены здесь

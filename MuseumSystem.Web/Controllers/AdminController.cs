@@ -6,20 +6,28 @@ using System.Security.Claims;
 
 namespace MuseumSystem.Web.Controllers
 {
-    public class AdminController(IClientService clientService, IAdminService adminService) : Controller
+    public class AdminController(IClientService clientService, IAdminService adminService, IEventService eventService) : Controller
     {
         private readonly IClientService _clientService = clientService;
         private readonly IAdminService _adminService = adminService;
+        private readonly IEventService _eventService = eventService;
 
         [Authorize]
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var adminLogin = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name).ToString();
+            var adminLogin = HttpContext.User.Identity.Name;
             var admin = await _adminService.GetAdminAsync(adminLogin);
+
+            var clients = await _clientService.GetClients();
+            foreach (var client in clients)
+            {
+                client.Records = await _eventService.GetRecordsByClient(client.IdClient);
+            }
 
             var adminDTO = new AdminDTO
             {
-                Clients = await _clientService.GetClients(),
+                Clients = clients,
                 Admin = admin,
             };
 

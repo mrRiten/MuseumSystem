@@ -8,6 +8,8 @@ namespace MuseumSystem.Core.ModelsDTO
          
         public ICollection<Client> Clients { get; set; }
 
+        public int TargetClientId { get; set; }
+
         public ICollection<Event>? UserEvent { get; set; }
     }
 }

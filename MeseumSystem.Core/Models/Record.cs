@@ -13,5 +13,6 @@ namespace MuseumSystem.Core.Models
 
         public Event Event { get; set; }
         public ICollection<EmailData> EmailDatas { get; set; }
+        public ICollection<RecordClient> RecordClients { get; set; }
     }
 }
