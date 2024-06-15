@@ -105,15 +105,30 @@
     gap: 5px;
 }
 
+.record__btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start
+}
+
 .record__time-btn {
-    padding: 1px 12px;
+    padding: 1px 15px;
     background-color: rgba(104, 104, 104, 0.3);
     border-radius: 5px;
 }
 
-    .record__time-btn:hover {
-        background-color: rgba(104, 104, 104, 0.45);
-    }
+.record__place {
+    margin-top: 2px;
+    padding: 0 10px;
+    background-color: #B73B3B;
+    font-size: 10px;
+    color: white;
+    border-radius: 7px;
+}
+
+.record__time-btn:hover {
+    background-color: rgba(104, 104, 104, 0.45);
+}
 
     .record__time-btn:focus {
         background-color: rgba(149, 22, 22, 0.45);

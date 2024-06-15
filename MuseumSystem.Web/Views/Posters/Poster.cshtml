@@ -40,7 +40,11 @@
                 <div class="record__time-wrapper">
                         @foreach (var item in group)
                         {
-                        <button value="@item.IdRecord" class="record__time-btn">@item.dateTime.ToString("HH:mm")</button>
+                        <div class="record__btn-wrapper">
+                                <button value="@item.IdRecord" class="record__time-btn">@item.dateTime.ToString("HH:mm")</button>
+                                <div class="record__place">Мест: 7</div>
+                        </div>
+                        
                         }
                 </div>
             </li>

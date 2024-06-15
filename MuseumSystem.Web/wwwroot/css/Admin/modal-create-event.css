@@ -4,7 +4,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-.modal {
+.create-event {
     position: fixed;
     z-index: 5;
     left: 0;
@@ -19,7 +19,7 @@ input::-webkit-inner-spin-button {
     display: none;
 }
 
-.modal__wrapper {
+.create-event__wrapper {
     margin: auto;
     position: relative;
 }
@@ -32,7 +32,7 @@ input::-webkit-inner-spin-button {
     outline: none;
 }
 
-.modal__content {
+.create-event__content {
     background-color: #fefefe;
     padding: 20px 25px;
     border-radius: 21px;
@@ -41,7 +41,7 @@ input::-webkit-inner-spin-button {
     flex-direction: column;
 }
 
-.modal__close {
+.create-event__close {
     position: absolute;
     top: 3px;
     right: 3px;
@@ -49,12 +49,12 @@ input::-webkit-inner-spin-button {
     height: 36px;
 }
 
-.modal__title {
+.create-event__title {
     font-size: 26px;
     font-weight: 600;
 }
 
-.modal__form {
+.create-event__form {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -108,7 +108,7 @@ input::-webkit-inner-spin-button {
     }
 
 
-.modal__form input::placeholder {
+.create-event__form input::placeholder {
     color: #c6c6c6;
 }
 

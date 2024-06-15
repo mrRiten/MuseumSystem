@@ -8,18 +8,21 @@ var event_name = document.getElementById("event_name");
 var modal_event_name = document.getElementById("modal_event_name");
 
 for (let i = 0; i < record_item.length; i++) {
-    const time_btn_collection = record_item[i].children[1].children
-    for (let j = 0; j < time_btn_collection.length; j++) {
-        time_btn_collection[j].onclick = function () {
+
+    for (var j = 0; j < record_item[i].children[1].children.length; j++) {
+        const time_btn_collection = record_item[i].children[1].children[j].children
+
+        time_btn_collection[0].onclick = function () {
             modal.style.display = "flex";
             document.body.style.overflow = "hidden";
             modal_event_name.innerHTML = event_name.innerHTML;
-            modal_time.innerHTML = time_btn_collection[j].innerHTML;
+            modal_time.innerHTML = time_btn_collection[0].innerHTML;
 
             const target_date = record_item[i].children[0];
             modal_date.innerHTML = target_date.innerHTML;
-            record_id.value = time_btn_collection[j].value;
+            record_id.value = time_btn_collection[0].value;
         }
+
     }
 }
 
